@@ -7,6 +7,7 @@
 //
 
 #import "GraphulatorAppDelegate.h"
+#import "CalculatorViewController.h"
 
 @implementation GraphulatorAppDelegate
 
@@ -23,6 +24,12 @@
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
+    
+    UINavigationController *navcon = [[UINavigationController alloc] init];
+    CalculatorViewController *cvc = [[CalculatorViewController alloc] init];
+    [navcon pushViewController:cvc animated:NO];
+    [cvc release];
+    [self.window addSubview:navcon.view];
     [self.window makeKeyAndVisible];
     return YES;
 }
