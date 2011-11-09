@@ -1,0 +1,262 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A8B249E6146A0B5F00518D95 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B249E5146A0B5F00518D95 /* UIKit.framework */; };
+		A8B249E8146A0B5F00518D95 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B249E7146A0B5F00518D95 /* Foundation.framework */; };
+		A8B249EA146A0B5F00518D95 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A8B249E9146A0B5F00518D95 /* CoreGraphics.framework */; };
+		A8B249F0146A0B5F00518D95 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A8B249EE146A0B5F00518D95 /* InfoPlist.strings */; };
+		A8B249F2146A0B5F00518D95 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B249F1146A0B5F00518D95 /* main.m */; };
+		A8B249F6146A0B5F00518D95 /* GraphulatorAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A8B249F5146A0B5F00518D95 /* GraphulatorAppDelegate.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A8B249E1146A0B5F00518D95 /* Graphulator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Graphulator.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A8B249E5146A0B5F00518D95 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A8B249E7146A0B5F00518D95 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A8B249E9146A0B5F00518D95 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A8B249ED146A0B5F00518D95 /* Graphulator-Info.plist */ = {isa = PBXFileReference; path = "Graphulator-Info.plist"; sourceTree = "<group>"; };
+		A8B249EF146A0B5F00518D95 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A8B249F1146A0B5F00518D95 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A8B249F3146A0B5F00518D95 /* Graphulator-Prefix.pch */ = {isa = PBXFileReference; path = "Graphulator-Prefix.pch"; sourceTree = "<group>"; };
+		A8B249F4146A0B5F00518D95 /* GraphulatorAppDelegate.h */ = {isa = PBXFileReference; path = GraphulatorAppDelegate.h; sourceTree = "<group>"; };
+		A8B249F5146A0B5F00518D95 /* GraphulatorAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GraphulatorAppDelegate.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A8B249DE146A0B5F00518D95 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8B249E6146A0B5F00518D95 /* UIKit.framework in Frameworks */,
+				A8B249E8146A0B5F00518D95 /* Foundation.framework in Frameworks */,
+				A8B249EA146A0B5F00518D95 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A8B249D6146A0B5F00518D95 = {
+			isa = PBXGroup;
+			children = (
+				A8B249EB146A0B5F00518D95 /* Graphulator */,
+				A8B249E4146A0B5F00518D95 /* Frameworks */,
+				A8B249E2146A0B5F00518D95 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A8B249E2146A0B5F00518D95 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A8B249E1146A0B5F00518D95 /* Graphulator.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A8B249E4146A0B5F00518D95 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A8B249E5146A0B5F00518D95 /* UIKit.framework */,
+				A8B249E7146A0B5F00518D95 /* Foundation.framework */,
+				A8B249E9146A0B5F00518D95 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A8B249EB146A0B5F00518D95 /* Graphulator */ = {
+			isa = PBXGroup;
+			children = (
+				A8B249F4146A0B5F00518D95 /* GraphulatorAppDelegate.h */,
+				A8B249F5146A0B5F00518D95 /* GraphulatorAppDelegate.m */,
+				A8B249EC146A0B5F00518D95 /* Supporting Files */,
+			);
+			path = Graphulator;
+			sourceTree = "<group>";
+		};
+		A8B249EC146A0B5F00518D95 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A8B249ED146A0B5F00518D95 /* Graphulator-Info.plist */,
+				A8B249EE146A0B5F00518D95 /* InfoPlist.strings */,
+				A8B249F1146A0B5F00518D95 /* main.m */,
+				A8B249F3146A0B5F00518D95 /* Graphulator-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A8B249E0146A0B5F00518D95 /* Graphulator */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A8B249F9146A0B5F00518D95 /* Build configuration list for PBXNativeTarget "Graphulator" */;
+			buildPhases = (
+				A8B249DD146A0B5F00518D95 /* Sources */,
+				A8B249DE146A0B5F00518D95 /* Frameworks */,
+				A8B249DF146A0B5F00518D95 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Graphulator;
+			productName = Graphulator;
+			productReference = A8B249E1146A0B5F00518D95 /* Graphulator.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A8B249D8146A0B5F00518D95 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Wave Ocean Software";
+			};
+			buildConfigurationList = A8B249DB146A0B5F00518D95 /* Build configuration list for PBXProject "Graphulator" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A8B249D6146A0B5F00518D95;
+			productRefGroup = A8B249E2146A0B5F00518D95 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A8B249E0146A0B5F00518D95 /* Graphulator */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A8B249DF146A0B5F00518D95 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8B249F0146A0B5F00518D95 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A8B249DD146A0B5F00518D95 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A8B249F2146A0B5F00518D95 /* main.m in Sources */,
+				A8B249F6146A0B5F00518D95 /* GraphulatorAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A8B249EE146A0B5F00518D95 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A8B249EF146A0B5F00518D95 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A8B249F7146A0B5F00518D95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		A8B249F8146A0B5F00518D95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A8B249FA146A0B5F00518D95 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Graphulator/Graphulator-Prefix.pch";
+				INFOPLIST_FILE = "Graphulator/Graphulator-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A8B249FB146A0B5F00518D95 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "Graphulator/Graphulator-Prefix.pch";
+				INFOPLIST_FILE = "Graphulator/Graphulator-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A8B249DB146A0B5F00518D95 /* Build configuration list for PBXProject "Graphulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8B249F7146A0B5F00518D95 /* Debug */,
+				A8B249F8146A0B5F00518D95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A8B249F9146A0B5F00518D95 /* Build configuration list for PBXNativeTarget "Graphulator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A8B249FA146A0B5F00518D95 /* Debug */,
+				A8B249FB146A0B5F00518D95 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A8B249D8146A0B5F00518D95 /* Project object */;
+}
