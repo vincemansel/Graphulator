@@ -7,60 +7,37 @@
 //
 
 #import "CalculatorViewController.h"
-#import "GraphViewController.h"
 
 @interface CalculatorViewController()
 @property (retain) CalculatorBrain *pBrain;
--(void)solveEquation:(double)result;
+-(void)displayResult:(double)result;
 @end;
 
 @implementation CalculatorViewController
 @synthesize pBrain;
 @synthesize display;
-//@synthesize status;
-//@synthesize memDisplay;
-//@synthesize degOrRadUISwitchStatus;
 
-//-(CalculatorBrain *)brain
-//{
-//    if (!self.pBrain) self.pBrain = [[CalculatorBrain alloc] init];
-//    return self.pBrain;
-//}
-
--(void)viewDidLoad
+- (void)viewDidLoad
 {
     pBrain = [[CalculatorBrain alloc] init];
     self.title = @"Graphulator";
 }
 
--(void)viewDidUnLoad
+- (void)viewDidUnLoad
 {
     self.display = nil;
-//    self.status = nil;
-//    self.memDisplay = nil;
-//    self.degOrRadUISwitchStatus = nil;
 }
 
--(BOOL)isfloatingPointOK:(NSString *)displayText
+- (BOOL)isfloatingPointOK:(NSString *)displayText
 {
     NSRange range = [displayText rangeOfString:@"."];
     if (range.location == NSNotFound) return YES;
     else return NO;
 }
 
--(IBAction)graphPressed:(UIButton *)sender
-{
-    GraphViewController *gvc = [[GraphViewController alloc] init];
-    gvc.scale = 1;
-    gvc.title = @"Equation Goes Here";
-    [self.navigationController pushViewController:gvc animated:YES];
-    [gvc release];
-}
-
--(IBAction)digitPressed:(UIButton *)sender
+- (IBAction)digitPressed:(UIButton *)sender
 {
     NSString *digit = sender.titleLabel.text;
-    //NSLog(@"Digit Pressed = %@", digit);
     
     if ([digit isEqual:@"Back"])
     {
@@ -84,22 +61,12 @@
     else
     {
         [display setText:digit];
-//        [status setText:@""];
         userIsInTheMiddleOfTypingANumber = YES;
     }
 }
 
--(IBAction)operationPressed:(UIButton *)sender
+- (IBAction)operationPressed:(UIButton *)sender
 {   
-//    if (![status.text isEqual:@""]
-//     && ([status.text length] >= 6)
-//     && [[status.text substringToIndex:6] isEqual:@"Error:"])
-//    {
-//        [pBrain performOperation:@"clearStatus"];
-//        [status setText:@""];
-//        [display setText:@"0"];
-//    }
-    
     if (userIsInTheMiddleOfTypingANumber)
     {
         [pBrain setOperand:[display.text doubleValue]];
@@ -114,52 +81,64 @@
     
     double result = [pBrain performOperation:operation];
     
-    // Model(brain) exports memoryStore to Controller via API: getMemoryStore
-//    [memDisplay setText:[NSString stringWithFormat:@"%g", pBrain.memoryStore]];
-    
-//    if (pBrain.isTwoOperandOperationPending)
-//        [status setText:[NSString stringWithFormat:@"%g %@", pBrain.waitingOperand,
-//                                                             pBrain.waitingOperation]];
-   
     if ([CalculatorBrain variablesInExpression:pBrain.expression])
         [display setText:[CalculatorBrain descriptionOfExpression:pBrain.expression]];
     else
-        [self solveEquation:result];
-    
-//    if ([pBrain isClearAllFlagUp])
-//        [status setText:@""];    
+        [self displayResult:result];    
 }
 
--(void)variablePressed:(UIButton *)sender
+- (void)variablePressed:(UIButton *)sender
 {
     NSString *variable = sender.titleLabel.text;
     [pBrain setVariableAsOperand:variable];
 }
 
--(void)solvedPressed:(UIButton *)sender
-{   
+- (NSString *)graphTitle
+{  
+    if (userIsInTheMiddleOfTypingANumber)
+    {
+        [pBrain setOperand:[display.text doubleValue]];
+        userIsInTheMiddleOfTypingANumber = NO;
+    }
+
     NSString * doe = [CalculatorBrain descriptionOfExpression:pBrain.expression];
     if (doe.length > 0) {
-        NSLog(@"solvedPressed: Last Character = %@", [doe substringFromIndex:doe.length-2]);
+        //NSLog(@"equationDescription: Last Character = %@", [doe substringFromIndex:doe.length-2]);
         if (![[doe substringFromIndex:doe.length-2] isEqual:@"= "])
             [pBrain performOperation:@"="];
-        double result = [CalculatorBrain evaluateExpression:pBrain.expression
-                                        usingVariableValues:[NSDictionary dictionaryWithObjectsAndKeys:
-                                                             [NSNumber numberWithDouble:2],@"x",
-                                                             [NSNumber numberWithDouble:4],@"a",
-                                                             [NSNumber numberWithDouble:6],@"b",
-                                                             [NSNumber numberWithDouble:8],@"c",
-                                                             nil]];
-        NSLog(@"ViewController Solve result = %g",result);
-        
-        //[self solveEquation:result]; // This handles neg sqrt and divide by zero
-        
-        NSString * doe2 = [CalculatorBrain descriptionOfExpression:pBrain.expression];
-        [display setText:[NSString stringWithFormat:@"%@ %g", doe2, result]];
     }
+    NSString * doe2 = [CalculatorBrain descriptionOfExpression:pBrain.expression];
+    return doe2;
 }
 
--(void)solveEquation:(double)result
+- (NSArray *)expressionResult
+{    
+    CGFloat result;
+    NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:320];
+    
+    for (CGFloat x = -160.0; x <= 160.0; x += 1.0) {
+        result = [CalculatorBrain evaluateExpression:pBrain.expression
+                                     usingVariableValues:[NSDictionary dictionaryWithObjectsAndKeys:
+                                                          [NSNumber numberWithDouble:x],@"x",
+                                                          nil]];
+        //NSLog(@"CalculatorViewController.m : expressionResult: x = %g, result = %g", x, result);
+        [resultArray addObject:[NSNumber numberWithFloat:result]];
+    }
+    [resultArray autorelease];
+    return (NSArray *)resultArray;
+}
+
+- (IBAction)graphPressed:(UIButton *)sender
+{
+    GraphViewController *gvc = [[GraphViewController alloc] init];
+    gvc.scale = 1;
+    gvc.graphData = [self expressionResult];
+    gvc.title = [self graphTitle];
+    [self.navigationController pushViewController:gvc animated:YES];
+    [gvc release];
+}
+
+- (void)displayResult:(double)result
 {
     if (isnan(result))
         [display setText:@"Error: Negative square root not allowed"];
@@ -186,6 +165,7 @@
 //}
 
 - (void)dealloc {
+    self.display = nil;
     [self.pBrain release];
     [super dealloc];
 }

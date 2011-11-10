@@ -79,7 +79,7 @@ NSString *vp = VARIABLE_PREFIX;
     }
     
     //NSLog(@"evaluateExpression: evalBrain.expression = %@", evalBrain.expression);
-    [evalBrain autorelease];
+    //[evalBrain autorelease];
     return result;
 }
 
@@ -122,7 +122,7 @@ NSString *vp = VARIABLE_PREFIX;
         }
         
     }
-    NSLog(@"descriptionOfExpression: %@", expressionDescription);
+    //NSLog(@"descriptionOfExpression: %@", expressionDescription);
     return expressionDescription;
 }
 

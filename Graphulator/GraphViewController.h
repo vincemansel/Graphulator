@@ -11,12 +11,14 @@
 
 @interface GraphViewController : UIViewController <GraphViewDelegate>
 {
-    CGFloat scale;      // TODO: TBD. Start with 0.01 to 155. Mod by Zoom Out/In
+    CGFloat scale;              // 1 to 100. Mod by Zoom Out/In
     GraphView *graphView;
+    NSArray *graphData;
 }
 
 @property (nonatomic) CGFloat scale;
 @property (retain) IBOutlet GraphView *graphView;
+@property (retain, nonatomic) NSArray *graphData;
 
 - (IBAction)zoomPressed:(UIButton *)sender;
 

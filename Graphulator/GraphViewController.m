@@ -12,17 +12,22 @@
 
 @synthesize scale;
 @synthesize graphView;
-
+@synthesize graphData;
 
 - (void)updateUI
 {
     [self.graphView setNeedsDisplay];
 }
 
--(void)setScale:(CGFloat)newScale
+//- (void)setGraphData:(NSArray *)newGraphData
+//{
+//    graphData = newGraphData;
+//}
+
+- (void)setScale:(CGFloat)newScale
 {
     if (newScale < 1.0) newScale = 1.0;
-    if (newScale > 100.0) newScale = 100.0;
+    if (newScale > 160.0) newScale = 160.0;
     scale = round(newScale);
     //scale = newScale;
     [self updateUI];
@@ -39,31 +44,30 @@
     return graphScale;
 }
 
+- (CGFloat)yValueForGraphView:(GraphView *)requestor
+                         forX:(CGFloat)x
+{
+    CGFloat result = [[graphData objectAtIndex:(NSInteger)x] doubleValue];
+    //NSLog(@"GraphViewController.m : yValueForGraphView: x = %g, result = %g", x, result);
+    return result;
+}
+
 - (IBAction)zoomPressed:(UIButton *)sender
 {
-    NSLog(@"Zoom Pressed: %@", sender.titleLabel.text);
+    //NSLog(@"Zoom Pressed: %@", sender.titleLabel.text);
     
     NSString *zoom= sender.titleLabel.text;
     
     if ([zoom isEqual:@"Zoom In"]) {
-        if (self.scale < 0.9)
-            self.scale += 0.1;
-        else if (self.scale < 5.0)
-            self.scale += 1.0;
-        else if (self.scale < 11)
-            self.scale += 5.0;
-        else
-            self.scale += 10;
+        if      (self.scale < 32)  self.scale *= 2;
+        else if (self.scale == 32) self.scale = 80;
+        else if (self.scale == 80) self.scale = 160;
     }
     else if ([zoom isEqual:@"Zoom Out"]) {
-        if (self.scale < 0.9)
-            self.scale -= 0.1;
-        else if (self.scale < 5.1)
-            self.scale -= 1.0;
-        else if (self.scale < 11.0)
-            self.scale -= 5.0;
-        else
-            self.scale -= 10.0;
+        if      (self.scale == 160) self.scale = 80;
+        else if (self.scale == 80)  self.scale = 32;
+        else if (self.scale == 1)   self.scale = 1;
+        else if (self.scale <= 32)  self.scale /= 2;
     }
 }
 
@@ -78,7 +82,6 @@
 {
     [super viewDidLoad];
     self.graphView.delegate = self;
-    self.scale = 35.0;
     [self updateUI];
     
 }
@@ -94,6 +97,7 @@
 - (void)dealloc
 {
     [self releaseOutlets];
+    [self.graphData release];
     [super dealloc];
 }
 
