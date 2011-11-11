@@ -111,18 +111,26 @@
     return doe2;
 }
 
+#define WIDTH 320
+#define RESOLUTION 16
+
 - (NSArray *)expressionResult
 {    
     CGFloat result;
-    NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:320];
+    //NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:WIDTH*RESOLUTION+1];
+    NSMutableArray *resultArray = [[NSMutableArray alloc] init];
     
-    for (CGFloat x = -160.0; x <= 160.0; x += 1.0) {
+    CGFloat span = WIDTH * RESOLUTION;
+    
+    for (CGFloat x = -span/2; x <= span/2; x += 1.0/RESOLUTION) {
         result = [CalculatorBrain evaluateExpression:pBrain.expression
                                      usingVariableValues:[NSDictionary dictionaryWithObjectsAndKeys:
                                                           [NSNumber numberWithDouble:x],@"x",
                                                           nil]];
-        //NSLog(@"CalculatorViewController.m : expressionResult: x = %g, result = %g", x, result);
         [resultArray addObject:[NSNumber numberWithFloat:result]];
+        NSInteger count = [resultArray count];
+        if (x == 0 || x == 1) 
+            NSLog(@"CalculatorViewController.m : expressionResult: x = %g, result = %g, count = %d, rA = %g", x, result, count, [[resultArray lastObject] doubleValue]);
     }
     [resultArray autorelease];
     return (NSArray *)resultArray;
@@ -131,7 +139,9 @@
 - (IBAction)graphPressed:(UIButton *)sender
 {
     GraphViewController *gvc = [[GraphViewController alloc] init];
-    gvc.scale = 1;
+    gvc.scale = 32;
+    gvc.dataWidth = WIDTH;
+    gvc.dataResolution = RESOLUTION;
     gvc.graphData = [self expressionResult];
     gvc.title = [self graphTitle];
     [self.navigationController pushViewController:gvc animated:YES];

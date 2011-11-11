@@ -10,7 +10,7 @@
 
 @implementation GraphViewController
 
-@synthesize scale;
+@synthesize scale, dataWidth, dataResolution;
 @synthesize graphView;
 @synthesize graphData;
 
@@ -24,10 +24,13 @@
 //    graphData = newGraphData;
 //}
 
+#define MIN_SCALE 1.0
+#define MAX_SCALE 160.0
+
 - (void)setScale:(CGFloat)newScale
 {
-    if (newScale < 1.0) newScale = 1.0;
-    if (newScale > 160.0) newScale = 160.0;
+    if (newScale < MIN_SCALE) newScale = MIN_SCALE;
+    if (newScale > MAX_SCALE) newScale = MAX_SCALE;
     scale = round(newScale);
     //scale = newScale;
     [self updateUI];
@@ -47,8 +50,21 @@
 - (CGFloat)yValueForGraphView:(GraphView *)requestor
                          forX:(CGFloat)x
 {
-    CGFloat result = [[graphData objectAtIndex:(NSInteger)x] doubleValue];
-    //NSLog(@"GraphViewController.m : yValueForGraphView: x = %g, result = %g", x, result);
+    CGFloat indexSpan = dataWidth * dataResolution;
+    CGFloat index = 0;
+    if (self.scale <= self.dataResolution) {
+        index = ((indexSpan/2) - ((indexSpan/2)/self.scale)) + (x * (self.dataResolution/self.scale));
+        if (x > 0 && self.scale != 16) index -= 1;
+    }
+    else if (self.scale >= 32) {
+        index = ((indexSpan/2) - ((indexSpan/2)/self.scale)) + x;
+    }
+    
+    CGFloat arrayIndex = index * dataResolution;
+    CGFloat result = [[graphData objectAtIndex:(NSInteger)arrayIndex] doubleValue];
+    
+    if (index == 2560)
+        NSLog(@"GraphViewController.m : yValueForGraphView: x = %g, index = %g, arrayIndex = %g, result = %g", x, index, arrayIndex, result);
     return result;
 }
 
@@ -60,13 +76,13 @@
     
     if ([zoom isEqual:@"Zoom In"]) {
         if      (self.scale < 32)  self.scale *= 2;
-        else if (self.scale == 32) self.scale = 80;
-        else if (self.scale == 80) self.scale = 160;
+        else if (self.scale == 32) self.scale = MAX_SCALE/2;
+        else if (self.scale == MAX_SCALE/2) self.scale = MAX_SCALE;
     }
     else if ([zoom isEqual:@"Zoom Out"]) {
-        if      (self.scale == 160) self.scale = 80;
-        else if (self.scale == 80)  self.scale = 32;
-        else if (self.scale == 1)   self.scale = 1;
+        if      (self.scale == MAX_SCALE) self.scale = MAX_SCALE/2;
+        else if (self.scale == MAX_SCALE/2)  self.scale = 32;
+        else if (self.scale == MIN_SCALE)   self.scale = MIN_SCALE;
         else if (self.scale <= 32)  self.scale /= 2;
     }
 }
