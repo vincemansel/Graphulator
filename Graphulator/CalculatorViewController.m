@@ -65,6 +65,12 @@
     }
 }
 
+- (void)variablePressed:(UIButton *)sender
+{
+    NSString *variable = sender.titleLabel.text;
+    [pBrain setVariableAsOperand:variable];
+}
+
 - (IBAction)operationPressed:(UIButton *)sender
 {   
     if (userIsInTheMiddleOfTypingANumber)
@@ -85,12 +91,6 @@
         [display setText:[CalculatorBrain descriptionOfExpression:pBrain.expression]];
     else
         [self displayResult:result];    
-}
-
-- (void)variablePressed:(UIButton *)sender
-{
-    NSString *variable = sender.titleLabel.text;
-    [pBrain setVariableAsOperand:variable];
 }
 
 - (NSString *)graphTitle
@@ -120,7 +120,8 @@
     //NSMutableArray *resultArray = [[NSMutableArray alloc] initWithCapacity:WIDTH*RESOLUTION+1];
     NSMutableArray *resultArray = [[NSMutableArray alloc] init];
     
-    CGFloat span = WIDTH * RESOLUTION;
+//    CGFloat span = WIDTH * RESOLUTION;
+    CGFloat span = WIDTH;
     
     for (CGFloat x = -span/2; x <= span/2; x += 1.0/RESOLUTION) {
         result = [CalculatorBrain evaluateExpression:pBrain.expression
@@ -128,9 +129,9 @@
                                                           [NSNumber numberWithDouble:x],@"x",
                                                           nil]];
         [resultArray addObject:[NSNumber numberWithFloat:result]];
-        NSInteger count = [resultArray count];
-        if (x == 0 || x == 1) 
-            NSLog(@"CalculatorViewController.m : expressionResult: x = %g, result = %g, count = %d, rA = %g", x, result, count, [[resultArray lastObject] doubleValue]);
+//        NSInteger count = [resultArray count];
+//        if (x == 0 || x == 1) 
+//            NSLog(@"CalculatorViewController.m : expressionResult: x = %g, result = %g, count = %d, rA = %g", x, result, count, [[resultArray lastObject] doubleValue]);
     }
     [resultArray autorelease];
     return (NSArray *)resultArray;

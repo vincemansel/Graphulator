@@ -43,7 +43,7 @@
     if (requestor == self.graphView) {
         graphScale = self.scale;
     }
-    NSLog(@"scaleForGraphView: graphScale = %g", graphScale);
+//    NSLog(@"scaleForGraphView: graphScale = %g", graphScale);
     return graphScale;
 }
 
@@ -60,11 +60,12 @@
         index = ((indexSpan/2) - ((indexSpan/2)/self.scale)) + x;
     }
     
-    CGFloat arrayIndex = index * dataResolution;
+//    CGFloat arrayIndex = index * dataResolution;
+    CGFloat arrayIndex = index;
     CGFloat result = [[graphData objectAtIndex:(NSInteger)arrayIndex] doubleValue];
     
-    if (index == 2560)
-        NSLog(@"GraphViewController.m : yValueForGraphView: x = %g, index = %g, arrayIndex = %g, result = %g", x, index, arrayIndex, result);
+//    if (index == 2560)
+//        NSLog(@"GraphViewController.m : yValueForGraphView: x = %g, index = %g, arrayIndex = %g, result = %g", x, index, arrayIndex, result);
     return result;
 }
 

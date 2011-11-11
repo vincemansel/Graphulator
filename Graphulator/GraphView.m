@@ -79,15 +79,15 @@
             xAxisBoundary = dataRangeBoundary/graphScale; //10
             break;
         case 32:
-            dataRangeBoundary = 160;
+            dataRangeBoundary = 80;
             xAxisBoundary = 5;
             break;
         case 80:
-            dataRangeBoundary = 160;
+            dataRangeBoundary = 32;
             xAxisBoundary = 2;
             break;
         case 160: // Zoomed In
-            dataRangeBoundary = 160;
+            dataRangeBoundary = 16;
             xAxisBoundary = 1;
             break;
         default:
@@ -103,17 +103,17 @@
     CGFloat yC = [self.delegate yValueForGraphView:self forX:p.x];
     p.y = halfPixelHeight - (yC * graphScale);
     
-    //CGFloat xIncrement = graphScale / (dataRangeBoundary / xAxisBoundary);
+    CGFloat xIncrement = graphScale / (dataRangeBoundary / xAxisBoundary);
     
     CGContextMoveToPoint(context, p.x, p.y);
     
     for (int x = 1; x <= dataRangeBoundary * 2; x += 1) {
-        //p.x = x * xIncrement;
-        p.x = x;
+        p.x = x * xIncrement;
+        //p.x = x;
         yC = [self.delegate yValueForGraphView:self forX:(CGFloat)x];
         p.y = halfPixelHeight - (yC * graphScale);
-        if (x == dataRangeBoundary-1)
-            NSLog(@"GraphView.m > drawRect: x = %d, p.x = %g, yC = %g, p.y = %g", x, p.x, yC, p.y);
+//        if (x == dataRangeBoundary-1)
+//            NSLog(@"GraphView.m > drawRect: x = %d, p.x = %g, yC = %g, p.y = %g", x, p.x, yC, p.y);
         CGContextAddLineToPoint(context, p.x, p.y);
     }
     CGContextStrokePath(context);
