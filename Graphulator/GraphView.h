@@ -14,7 +14,7 @@
 - (CGFloat)scaleForGraphView:(GraphView *)requestor; // 1.0 (Zoomed Out) to 160 (Zoomed In)
                                                      // 1, 2, 4, 8, 16, 32, 80, 160
 - (CGFloat)yValueForGraphView:(GraphView *)requestor
-                          forX:(CGFloat) x;          // depends on graphScale
+                         forX:(CGFloat)x;           // depends on graphScale
 @end
 
 @interface GraphView : UIView

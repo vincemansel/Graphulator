@@ -60,12 +60,10 @@
         index = ((indexSpan/2) - ((indexSpan/2)/self.scale)) + x;
     }
     
-//    CGFloat arrayIndex = index * dataResolution;
-    CGFloat arrayIndex = index;
-    CGFloat result = [[graphData objectAtIndex:(NSInteger)arrayIndex] doubleValue];
+    CGFloat result = [[graphData objectAtIndex:(NSInteger)index] doubleValue];
     
 //    if (index == 2560)
-//        NSLog(@"GraphViewController.m : yValueForGraphView: x = %g, index = %g, arrayIndex = %g, result = %g", x, index, arrayIndex, result);
+//        NSLog(@"GraphViewController.m : yValueForGraphView: x = %g, index = %g, result = %g", x, index, result);
     return result;
 }
 
